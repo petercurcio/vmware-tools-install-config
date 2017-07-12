@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Step 1 - Run this script to setup vmware-tools installation
+# Step 2 - Run vmware-tools installer
+
+
 # Create dirs
 sudo mkdir -pv /etc/init.d
 for i in {0..6}; do sudo mkdir -pv /etc/init.d/rc${i}.d; done
@@ -9,7 +13,10 @@ sudo pacman -S --needed --noconfirm base-devel net-tools
 sudo pacman -S yaourt --needed --noconfirm
 yaourt -S vmware-systemd-services --needed --noconfirm
 
-mkdir -pv ~/.vmwaretemp
+
+if [ ! -f /etc/systemd/system/vmware.service ] || [ ! -f /etc/systemd/system/vmware-usbarbitrator.service ]; then 
+	
+	mkdir -pv ~/.vmwaretemp
 
 cat <<EOT >> /home/$USER/.vmwaretemp/vmware.service
 [Unit]
@@ -43,5 +50,7 @@ RemainAfterExit=yes
 WantedBy=multi-user.target
 EOT
 
-cd ~/.vmwaretemp && sudo mv vmware.service vmware-usbarbitrator.service /etc/systemd/system/
-rm -rf ~/.vmwaretemp
+	cd ~/.vmwaretemp && sudo mv vmware.service vmware-usbarbitrator.service /etc/systemd/system/
+	rm -rf ~/.vmwaretemp
+
+fi
