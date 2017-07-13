@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# https://github.com/petercurcio/vmware-tools-install-config
+# git@github.com:petercurcio/vmware-tools-install-config.git
+
 # Step 1 - Run this script to setup vmware-tools installation
 # Step 2 - Run vmware-tools installer
 
