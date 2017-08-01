@@ -12,7 +12,9 @@ sudo mkdir -pv /etc/init.d
 for i in {0..6}; do sudo mkdir -pv /etc/init.d/rc${i}.d; done
 
 # Install dependencies
-sudo pacman -S --needed --noconfirm base-devel net-tools 
+sudo pacman -S --needed --noconfirm net-tools 
+# not using --noconfirm in case there is a gcc conflict
+sudo pacman -S --needed base-devel  
 sudo pacman -S yaourt --needed --noconfirm
 yaourt -S vmware-systemd-services --needed --noconfirm
 
